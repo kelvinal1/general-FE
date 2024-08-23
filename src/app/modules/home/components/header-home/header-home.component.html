@@ -1,0 +1,15 @@
+<div class="container-main">
+    <div nz-row [nzGutter]="[4,4]" style="width: 100%; height: 100%;">
+        <div nz-col style="height: 100%;  display: grid; place-content: center; overflow: hidden;" [nzXs]="4" [nzSm]="4" [nzMd]="4" [nzLg]="4" [nzXl]="4" [nzXXl]="4">
+            <img src="assets/logo_ka.svg" style="height: 100%; width: 100%; object-fit: contain;  cursor: pointer;" alt="">
+        </div>
+        <div nz-col style="height: 100%; display: flex; justify-content: flex-end;" [nzXs]="20" [nzSm]="20" [nzMd]="20" [nzLg]="20" [nzXl]="20" [nzXXl]="20">
+            <div nz-col style="height: 100%;  display: flex; align-items: center; " [nzXs]="12" [nzSm]="12" [nzMd]="6" [nzLg]="4" [nzXl]="4" [nzXXl]="4">
+                <h2 (click)="goSpace(1)" style="color: white; cursor: pointer;"><span nz-icon nzType="usergroup-add" nzTheme="outline"></span> Usuarios</h2>
+            </div>
+            <div nz-col style="height: 100%;display: flex; align-items: center; " [nzXs]="12" [nzSm]="12" [nzMd]="6" [nzLg]="4" [nzXl]="4" [nzXXl]="4">
+                <h2 (click)="goSpace(2)" style="color: white; cursor: pointer;"><span nz-icon nzType="usergroup-add" nzTheme="outline"></span> Productos</h2>
+            </div>
+        </div>
+    </div>
+</div>

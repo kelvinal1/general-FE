@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Asegura que el contenedor principal ocupe al menos toda la altura de la ventana */
+}
+
+main {
+    flex: 1;
+    /* Hace que el contenido principal ocupe el espacio disponible entre el header y el footer */
+}
+
+
+
+.container-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url(../../../../../assets/wallpaper_general.jpg);
+    background-size: cover;
+    /* Hace que la imagen cubra todo el contenedor */
+    background-attachment: fixed;
+    /* Fija la imagen en su lugar al hacer scroll */
+    background-position: center;
+    overflow-x: hidden;
+}

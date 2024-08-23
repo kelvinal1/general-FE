@@ -1,0 +1,111 @@
+<nz-card style="width: 100%; height: auto; background-color: rgba(0, 0, 0, 0.5); border: rgba(0, 0, 0, 0.5);">
+    <div style="width: 100%; text-align: center;">
+        <h1 style="color: white;">Gestión de Usuarios</h1>
+    </div>
+    <div nz-row [nzGutter]="[8,8]" style="width: 100%;">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="20" [nzXl]="20" [nzXXl]="20">
+            <input nz-input [(ngModel)]="filter" (ngModelChange)="onFilterChange($event)" [placeholder]="'Buscar información'" style="width: 100%;" />
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="4" [nzXl]="4" [nzXXl]="4">
+            <button (click)="formVisible = true;"
+                style="width: 100%;color: white; background-color: #77dd77; border: #77dd77;" nz-button
+                nzType="primary">
+                <span nz-icon nzType="plus"></span>
+                Nuevo
+            </button>
+        </div>
+        <div nz-col style="text-align: right;" [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24" [nzXXl]="24">
+            <button (click)="generatePdf()" style="color: white; background-color: #E63946; border: #E63946;" nz-button nzType="primary">
+                <span nz-icon nzType="download"></span>
+                Descargar
+            </button>
+        </div>
+        <div nz-col style="text-align: left;" [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24" [nzXXl]="24">
+            <nz-table #basicTable [nzData]="filteredUsers" [nzLoading]="loading">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Nombre</th>
+                        <th style="text-align: center;">Apellido</th>
+                        <th style="text-align: center;">Email</th>
+                        <th style="text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{data.firstNameUser}}</td>
+                        <td>{{data.lastNameUser}}</td>
+                        <td>{{data.mailUser}}</td>
+                        <td style="text-align: center;">
+                            <button nz-button nz-dropdown [nzDropdownMenu]="menu">
+                                Acciones
+                                <span nz-icon nzType="down"></span>
+                            </button>
+                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                                <ul nz-menu>
+                                    <li nz-menu-item>
+                                        <button (click)="editItem(data)"
+                                            style="width: 100%;color: black; background-color: #fdfd96; border: #fdfd96;"
+                                            nz-button nzType="primary">
+                                            <span nz-icon nzType="edit"></span>
+                                            Editar
+                                        </button>
+                                    </li>
+                                    <li nz-menu-item>
+                                        <button (click)="deleteItem(data)"
+                                            style="width: 100%;color: white; background-color: #ff6961; border: #ff6961;"
+                                            nz-button nzType="primary">
+                                            <span nz-icon nzType="delete"></span>
+                                            Eliminar
+                                        </button>
+                                    </li>
+                                    
+                                </ul>
+                            </nz-dropdown-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</nz-card>
+
+
+<nz-modal [(nzVisible)]="formVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+    [nzOkLoading]="loadingOperation">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="formUser">
+            <nz-row [nzGutter]="[8,8]">
+                <nz-col class="gutter-row" nzMd="24" nzXs="24">
+                    <nz-form-label class="nz-text-box-label label-align" nzMd="24" nzRequired>
+                        Nombre
+                    </nz-form-label>
+                    <input nz-input placeholder="Nombre" formControlName="firstNameUser" autocomplete="off" />
+                </nz-col>
+                <nz-col class="gutter-row" nzMd="24" nzXs="24">
+                    <nz-form-label class="nz-text-box-label label-align" nzMd="24" nzRequired>
+                        Apellido
+                    </nz-form-label>
+                    <input nz-input placeholder="Nombre" formControlName="lastNameUser" autocomplete="off" />
+                </nz-col>
+                <nz-col class="gutter-row" nzMd="24" nzXs="24">
+                    <nz-form-label class="nz-text-box-label label-align" nzMd="24" nzRequired>
+                        Emai
+                    </nz-form-label>
+                    <input nz-input placeholder="Nombre" formControlName="mailUser" autocomplete="off" />
+                </nz-col>
+                <nz-col class="gutter-row" nzMd="24" nzXs="24">
+                    <nz-form-label class="nz-text-box-label label-align" nzMd="24" nzRequired>
+                        Clave
+                    </nz-form-label>
+                    <input nz-input placeholder="Nombre" formControlName="passwordUser" autocomplete="off" />
+                </nz-col>
+                <nz-col class="gutter-row" nzMd="24" nzXs="24">
+                    <nz-form-label class="nz-text-box-label label-align" nzMd="24" nzRequired>
+                        Nombre usuario
+                    </nz-form-label>
+                    <input nz-input placeholder="Nombre" formControlName="identifierUser" autocomplete="off" />
+                </nz-col>
+            </nz-row>
+        </form>
+    </ng-container>
+</nz-modal>
